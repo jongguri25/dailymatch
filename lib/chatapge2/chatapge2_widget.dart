@@ -215,25 +215,12 @@ class _Chatapge2WidgetState extends State<Chatapge2Widget>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          widget.characterName!,
+                                          '호감도',
                                           style: TextStyle(
-                                            color: Color(0xFF101417),
-                                            fontSize: 22.0,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            '호감도',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 26.0,
-                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 26.0,
                                           ),
                                         ),
                                         Padding(
