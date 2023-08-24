@@ -58,15 +58,17 @@ class _AllChatsPageWidgetState extends State<AllChatsPageWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: Text(
-          '채팅',
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'NIXGON',
-                color: FlutterFlowTheme.of(context).primary,
-                fontSize: 24.0,
-                fontWeight: FontWeight.w500,
-                useGoogleFonts: false,
-              ),
+        title: AuthUserStreamWidget(
+          builder: (context) => Text(
+            '채팅  (💖:${valueOrDefault(currentUserDocument?.heart, 0).toString()})',
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'NIXGON',
+                  color: FlutterFlowTheme.of(context).primary,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w500,
+                  useGoogleFonts: false,
+                ),
+          ),
         ),
         actions: [],
         centerTitle: false,
@@ -94,67 +96,75 @@ class _AllChatsPageWidgetState extends State<AllChatsPageWidget> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      logFirebaseEvent(
-                          'ALL_CHATS_PAGE_PAGE_Text_gb9ybl3t_ON_TAP');
-                      logFirebaseEvent('Text_update_widget_state');
-                      setState(() {
-                        _model.namsachin = true;
-                      });
-                    },
-                    child: Text(
-                      '대화중',
-                      style: TextStyle(
-                        fontFamily: 'NIXGON',
-                        color:
-                            _model.namsachin ? Colors.black : Color(0xFFD3D3D3),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 34.0,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                    child: InkWell(
+            if (responsiveVisibility(
+              context: context,
+              phone: false,
+              tablet: false,
+              tabletLandscape: false,
+              desktop: false,
+            ))
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         logFirebaseEvent(
-                            'ALL_CHATS_PAGE_PAGE_Text_9lf1c9lh_ON_TAP');
+                            'ALL_CHATS_PAGE_PAGE_Text_gb9ybl3t_ON_TAP');
                         logFirebaseEvent('Text_update_widget_state');
                         setState(() {
-                          _model.namsachin = false;
+                          _model.namsachin = true;
                         });
                       },
                       child: Text(
-                        '완결💖',
+                        '대화중',
                         style: TextStyle(
                           fontFamily: 'NIXGON',
                           color: _model.namsachin
-                              ? Color(0xFFD3D3D3)
-                              : Color(0xFFFF2E54),
+                              ? Colors.black
+                              : Color(0xFFD3D3D3),
                           fontWeight: FontWeight.w500,
                           fontSize: 34.0,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'ALL_CHATS_PAGE_PAGE_Text_9lf1c9lh_ON_TAP');
+                          logFirebaseEvent('Text_update_widget_state');
+                          setState(() {
+                            _model.namsachin = false;
+                          });
+                        },
+                        child: Text(
+                          '완결💖',
+                          style: TextStyle(
+                            fontFamily: 'NIXGON',
+                            color: _model.namsachin
+                                ? Color(0xFFD3D3D3)
+                                : Color(0xFFFF2E54),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 34.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
             Expanded(
               child: Align(
                 alignment: AlignmentDirectional(0.0, -1.0),

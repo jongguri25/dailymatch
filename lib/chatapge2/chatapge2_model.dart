@@ -20,6 +20,10 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class Chatapge2Model extends FlutterFlowModel {
+  ///  Local state fields for this page.
+
+  bool showImage = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -61,6 +61,11 @@ class ChatMessagesRecord extends FirestoreRecord {
   int get imageNumber => _imageNumber ?? 0;
   bool hasImageNumber() => _imageNumber != null;
 
+  // "chatLoveNumber" field.
+  double? _chatLoveNumber;
+  double get chatLoveNumber => _chatLoveNumber ?? 0.0;
+  bool hasChatLoveNumber() => _chatLoveNumber != null;
+
   void _initializeFields() {
     _user = snapshotData['user'] as DocumentReference?;
     _chat = snapshotData['chat'] as DocumentReference?;
@@ -71,6 +76,7 @@ class ChatMessagesRecord extends FirestoreRecord {
     _nextPrompt = snapshotData['nextPrompt'] as String?;
     _loveNumber = castToType<double>(snapshotData['loveNumber']);
     _imageNumber = castToType<int>(snapshotData['imageNumber']);
+    _chatLoveNumber = castToType<double>(snapshotData['chatLoveNumber']);
   }
 
   static CollectionReference get collection =>
@@ -117,6 +123,7 @@ Map<String, dynamic> createChatMessagesRecordData({
   String? nextPrompt,
   double? loveNumber,
   int? imageNumber,
+  double? chatLoveNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +136,7 @@ Map<String, dynamic> createChatMessagesRecordData({
       'nextPrompt': nextPrompt,
       'loveNumber': loveNumber,
       'imageNumber': imageNumber,
+      'chatLoveNumber': chatLoveNumber,
     }.withoutNulls,
   );
 
@@ -149,7 +157,8 @@ class ChatMessagesRecordDocumentEquality
         e1?.ai == e2?.ai &&
         e1?.nextPrompt == e2?.nextPrompt &&
         e1?.loveNumber == e2?.loveNumber &&
-        e1?.imageNumber == e2?.imageNumber;
+        e1?.imageNumber == e2?.imageNumber &&
+        e1?.chatLoveNumber == e2?.chatLoveNumber;
   }
 
   @override
@@ -162,7 +171,8 @@ class ChatMessagesRecordDocumentEquality
         e?.ai,
         e?.nextPrompt,
         e?.loveNumber,
-        e?.imageNumber
+        e?.imageNumber,
+        e?.chatLoveNumber
       ]);
 
   @override

@@ -51,14 +51,6 @@ class _NoChatWidgetState extends State<NoChatWidget> {
             maxHeight: 300.0,
           ),
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 4.0,
-                color: Color(0x34090F13),
-                offset: Offset(0.0, 2.0),
-              )
-            ],
             borderRadius: BorderRadius.circular(8.0),
           ),
           alignment: AlignmentDirectional(0.0, -1.0),

@@ -57,7 +57,8 @@
     <string>In order to take a picture or video, this app requires permission to access the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+	<key>PermissionGroupNotification</key>
+    <string>새로운 매치를 받기 위해 푸시를 허용해주세요</string>
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>

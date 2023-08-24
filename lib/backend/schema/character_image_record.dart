@@ -36,6 +36,11 @@ class CharacterImageRecord extends FirestoreRecord {
   String get type => _type ?? '';
   bool hasType() => _type != null;
 
+  // "heart" field.
+  int? _heart;
+  int get heart => _heart ?? 0;
+  bool hasHeart() => _heart != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -43,6 +48,7 @@ class CharacterImageRecord extends FirestoreRecord {
     _chatImage = snapshotData['chatImage'] as String?;
     _imageCount = castToType<int>(snapshotData['imageCount']);
     _type = snapshotData['type'] as String?;
+    _heart = castToType<int>(snapshotData['heart']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -89,6 +95,7 @@ Map<String, dynamic> createCharacterImageRecordData({
   String? chatImage,
   int? imageCount,
   String? type,
+  int? heart,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -96,6 +103,7 @@ Map<String, dynamic> createCharacterImageRecordData({
       'chatImage': chatImage,
       'imageCount': imageCount,
       'type': type,
+      'heart': heart,
     }.withoutNulls,
   );
 
@@ -111,12 +119,13 @@ class CharacterImageRecordDocumentEquality
     return e1?.character == e2?.character &&
         e1?.chatImage == e2?.chatImage &&
         e1?.imageCount == e2?.imageCount &&
-        e1?.type == e2?.type;
+        e1?.type == e2?.type &&
+        e1?.heart == e2?.heart;
   }
 
   @override
   int hash(CharacterImageRecord? e) => const ListEquality()
-      .hash([e?.character, e?.chatImage, e?.imageCount, e?.type]);
+      .hash([e?.character, e?.chatImage, e?.imageCount, e?.type, e?.heart]);
 
   @override
   bool isValidKey(Object? o) => o is CharacterImageRecord;

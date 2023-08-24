@@ -2,6 +2,7 @@ import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/buy_heart_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -135,15 +136,18 @@ class _SettingWidgetState extends State<SettingWidget>
                 automaticallyImplyLeading: false,
                 title: Visibility(
                   visible: loggedIn,
-                  child: Text(
-                    '설정',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'NIXGON',
-                          color: FlutterFlowTheme.of(context).primary,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.w500,
-                          useGoogleFonts: false,
-                        ),
+                  child: AuthUserStreamWidget(
+                    builder: (context) => Text(
+                      '설정  (💖:${valueOrDefault(currentUserDocument?.heart, 0).toString()})',
+                      style:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: 'NIXGON',
+                                color: FlutterFlowTheme.of(context).primary,
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.w500,
+                                useGoogleFonts: false,
+                              ),
+                    ),
                   ),
                 ),
                 actions: [],
@@ -1854,8 +1858,6 @@ class _SettingWidgetState extends State<SettingWidget>
                                       width: 100.0,
                                       height: 100.0,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -1901,8 +1903,9 @@ class _SettingWidgetState extends State<SettingWidget>
                                         .labelMedium,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 2.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
@@ -1910,7 +1913,7 @@ class _SettingWidgetState extends State<SettingWidget>
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
@@ -1918,7 +1921,7 @@ class _SettingWidgetState extends State<SettingWidget>
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
@@ -1926,7 +1929,7 @@ class _SettingWidgetState extends State<SettingWidget>
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
@@ -1959,8 +1962,9 @@ class _SettingWidgetState extends State<SettingWidget>
                                       FlutterFlowTheme.of(context).labelMedium,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 2.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
@@ -1968,21 +1972,21 @@ class _SettingWidgetState extends State<SettingWidget>
                                     borderSide: BorderSide(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
+                                      width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
+                                      width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
+                                      width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
@@ -1998,65 +2002,64 @@ class _SettingWidgetState extends State<SettingWidget>
                                     .asValidator(context),
                               ),
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.05),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 24.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
                                     logFirebaseEvent(
-                                        'SETTING_PAGE_Row_jsc5fvit_ON_TAP');
-                                    logFirebaseEvent('Row_launch_u_r_l');
-                                    await launchURL(
-                                        'https://jongguri.notion.site/d07df9629f5d4a5389bc763511a513e8?pvs=4');
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        '☑️ 약관 동의',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color: Color(0xFFC9C9C9),
+                                        'SETTING_PAGE_하트구매_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_bottom_sheet');
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return GestureDetector(
+                                          onTap: () => FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode),
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: Container(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.5,
+                                              child: BuyHeartWidget(),
                                             ),
-                                      ),
-                                    ],
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  },
+                                  text: '하트구매',
+                                  options: FFButtonOptions(
+                                    width: 250.0,
+                                    height: 50.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Colors.white,
+                                        ),
+                                    elevation: 2.0,
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
                                   ),
                                 ),
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'SETTING_PAGE_Row_dofmhayg_ON_TAP');
-                                    logFirebaseEvent('Row_launch_u_r_l');
-                                    await launchURL(
-                                        'https://jongguri.notion.site/faa25e56fa674a02aac33ae499f2c1ca?pvs=4');
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        '☑️ 개인정보처리방침',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color: Color(0xFFC9C9C9),
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                             Align(
                               alignment: AlignmentDirectional(0.0, 0.05),
@@ -2094,8 +2097,10 @@ class _SettingWidgetState extends State<SettingWidget>
                                   },
                                   text: '저장',
                                   options: FFButtonOptions(
+                                    width: 250.0,
+                                    height: 50.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        80.0, 20.0, 80.0, 20.0),
+                                        0.0, 0.0, 0.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: Color(0xFF101417),
@@ -2135,8 +2140,10 @@ class _SettingWidgetState extends State<SettingWidget>
                                   },
                                   text: '로그아웃',
                                   options: FFButtonOptions(
+                                    width: 250.0,
+                                    height: 50.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        80.0, 20.0, 80.0, 20.0),
+                                        0.0, 0.0, 0.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: Colors.white,
@@ -2187,8 +2194,10 @@ class _SettingWidgetState extends State<SettingWidget>
                                   },
                                   text: '탈퇴',
                                   options: FFButtonOptions(
+                                    width: 250.0,
+                                    height: 50.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        80.0, 20.0, 80.0, 20.0),
+                                        0.0, 0.0, 0.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: Colors.white,
@@ -2197,7 +2206,7 @@ class _SettingWidgetState extends State<SettingWidget>
                                         .override(
                                           fontFamily: 'Open Sans',
                                           color: Color(0xFFD5D5D5),
-                                          fontSize: 12.0,
+                                          fontSize: 18.0,
                                         ),
                                     elevation: 0.0,
                                     borderSide: BorderSide(
@@ -2206,6 +2215,70 @@ class _SettingWidgetState extends State<SettingWidget>
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                 ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'SETTING_PAGE_Row_jsc5fvit_ON_TAP');
+                                      logFirebaseEvent('Row_launch_u_r_l');
+                                      await launchURL(
+                                          'https://jongguri.notion.site/d07df9629f5d4a5389bc763511a513e8?pvs=4');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          '☑️ 약관 동의',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color: Color(0xFFC9C9C9),
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'SETTING_PAGE_Row_dofmhayg_ON_TAP');
+                                      logFirebaseEvent('Row_launch_u_r_l');
+                                      await launchURL(
+                                          'https://jongguri.notion.site/faa25e56fa674a02aac33ae499f2c1ca?pvs=4');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          '☑️ 개인정보처리방침',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color: Color(0xFFC9C9C9),
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
